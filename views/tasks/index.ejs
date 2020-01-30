@@ -6,39 +6,43 @@
     <div class="tasks">
         <div class="row">
             <div class="row_header">
-                <h2>test</h2>
+                <h2>Backlog</h2>
             </div>
-            <div class="task">
-                <p>TASK</p>
-            </div>
-            <div class="task">
-                <p>TASK</p>
-            </div>
-            
+            <% tasks.backlog.forEach(task => { %>
+                <div class="task">
+                    <p><%= task.task %></p>
+                </div>
+            <% }); %>
         </div>
         <div class="row">
             <div class="row_header">
-                <h2>test</h2>
+                <h2>Ready to do</h2>
             </div>
-            <div class="task">
-            
-            </div>
+            <% tasks.ready.forEach(task => { %>
+                <div class="task">
+                    <p><%= task.task %></p>
+                </div>
+            <% }); %>
         </div>
         <div class="row">
             <div class="row_header">
-                <h2>test</h2>
+                <h2>In progress</h2>
             </div>
-            <div class="task">
-            
-            </div>
+            <% tasks.progress.forEach(task => { %>
+                <div class="task">
+                    <p><%= task.task %></p>
+                </div>
+            <% }); %>
         </div>
         <div class="row">
             <div class="row_header">
-                <h2>test</h2>
+                <h2>Done</h2>
             </div>
-            <div class="task">
-            
-            </div>
+            <% tasks.done.forEach(task => { %>
+                <div class="task">
+                    <p><%= task.task %></p>
+                </div>
+            <% }); %>
         </div>
     </div>
     

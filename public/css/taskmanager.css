@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    font-family: "Roboto";
 }
 
 div.grid-container{
@@ -29,6 +30,12 @@ div.row{
     margin: 1.8em;
     height: fit-content;
     background: rgba(50,50,50,0.1);
+}
+
+div.row_header{
+    font-weight: 500;
+    font-size: 20px;
+    color: #353439;
 }
 
 div.task {
