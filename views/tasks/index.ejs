@@ -4,9 +4,16 @@
     <div class="project_header">
     </div>
     <div class="tasks">
-        <div class="row">
-            <div class="row_header">
+        <div class="col">
+            <div class="col_header">
                 <h2>Backlog</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
+                <div class="new_form hidden">
+                    <label for="task">task: </label>
+                    <input type="text" name="" value="" id="task">
+                </div>
             </div>
             <% tasks.backlog.forEach(task => { %>
                 <div class="task">
@@ -14,9 +21,12 @@
                 </div>
             <% }); %>
         </div>
-        <div class="row">
-            <div class="row_header">
+        <div class="col">
+            <div class="col_header">
                 <h2>Ready to do</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
             </div>
             <% tasks.ready.forEach(task => { %>
                 <div class="task">
@@ -24,9 +34,12 @@
                 </div>
             <% }); %>
         </div>
-        <div class="row">
-            <div class="row_header">
+        <div class="col">
+            <div class="col_header">
                 <h2>In progress</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
             </div>
             <% tasks.progress.forEach(task => { %>
                 <div class="task">
@@ -34,9 +47,12 @@
                 </div>
             <% }); %>
         </div>
-        <div class="row">
-            <div class="row_header">
+        <div class="col">
+            <div class="col_header">
                 <h2>Done</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
             </div>
             <% tasks.done.forEach(task => { %>
                 <div class="task">

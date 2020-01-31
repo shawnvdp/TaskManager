@@ -22,30 +22,59 @@ div.project_header{
 div.tasks{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "row row row row";
+    grid-template-areas: "col col col col";
     background: #F9F9F9;
+    padding: 0 2em; /* 0 top/bottom - 2em left/right */
 }
 
-div.row{
+div.col{
     margin: 1.8em;
     height: fit-content;
-    background: rgba(50,50,50,0.1);
 }
 
-div.row_header{
+div.col_header{
     font-weight: 500;
     font-size: 20px;
     color: #353439;
 }
 
+div.new.task{
+    min-height: 30px;
+    padding: 0.8em;
+    text-align: center;
+    display: block;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 6px 6px;
+    color: #3B94C7;
+}
+
+div.new:hover{
+    background: #F1F1F1;
+    cursor: pointer;
+}
+
+p.plus{
+    font-size: 3em;
+}
+
 div.task {
-    background: yellowgreen;
     padding: 1.3em;
-    min-height: 115px;
+    min-height: 50px;
     border-radius: 6px;
     margin-bottom: 1em;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    line-height: 1.4em;
+    font-size: 1.1em;
+    display : flex;
+    align-items : center;
 }
 
 div.task p{
     margin: 0;
+}
+
+.hidden{
+    display: none;
 }
