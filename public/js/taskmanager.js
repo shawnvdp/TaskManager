@@ -5,13 +5,40 @@
     let newButtons = document.querySelectorAll("div.new");
 
     newButtons.forEach(newButton => {
-        newButton.addEventListener("click", (event) => {
+        newButton.addEventListener("click", event => {
             newTask(newButton, columns);
+        });
+    });
+
+    let deleteButtons = document.querySelectorAll("button");
+
+    deleteButtons.forEach(deleteButton => {
+        deleteButton.addEventListener("click", event => {
+            deleteTask(deleteButton);
         });
     });
 
 
 })();
+
+function deleteTask(el) {
+    let parent = el.parentNode;
+    let dbEntry = parent.dataset.entry;
+
+    (async () => {
+        try {
+            let response = await sendData("DELETE", "http://localhost:3000/tasks", { dbEntry: dbEntry });
+            if (response == "error") {
+                console.log("error sending data to the server");
+                return;
+            }
+            $(parent).remove();
+        } catch (err) {
+            console.log(err);
+        }
+    })();
+
+}
 
 function newTask(el, columns) {
     let parent = el.parentNode;
@@ -31,9 +58,10 @@ function newTask(el, columns) {
             console.log("error sending data to the server");
             return;
         }
+        let insertId = parseInt(response);
 
         //insert new task element after whichever '+' button the user clicked to display it at the top of the task list
-        $("<div class='task'><p></p></div>").insertAfter($(el));
+        $("<div class='task' data-entry='" + insertId + "'><p></p></div>").insertAfter($(el));
     })();
 }
 

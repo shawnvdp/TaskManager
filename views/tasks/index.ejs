@@ -16,8 +16,9 @@
                 </div>
             </div>
             <% tasks.backlog.forEach(task => { %>
-                <div class="task">
+                <div class="task" data-entry=<%= task.id %>>
                     <p><%= task.task %></p>
+                    <button type="submit">delete</button>
                 </div>
             <% }); %>
         </div>
@@ -29,8 +30,9 @@
                 <p class="plus">+</p>
             </div>
             <% tasks.ready.forEach(task => { %>
-                <div class="task">
+                <div class="task" data-entry=<%= task.id %>>
                     <p><%= task.task %></p>
+                    <button type="submit">delete</button>
                 </div>
             <% }); %>
         </div>
@@ -42,8 +44,9 @@
                 <p class="plus">+</p>
             </div>
             <% tasks.progress.forEach(task => { %>
-                <div class="task">
+                <div class="task" data-entry=<%= task.id %>>
                     <p><%= task.task %></p>
+                    <button type="submit">delete</button>
                 </div>
             <% }); %>
         </div>
@@ -55,8 +58,9 @@
                 <p class="plus">+</p>
             </div>
             <% tasks.done.forEach(task => { %>
-                <div class="task">
+                <div class="task" data-entry=<%= task.id %>>
                     <p><%= task.task %></p>
+                    <button type="submit">delete</button>
                 </div>
             <% }); %>
         </div>

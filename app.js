@@ -50,11 +50,27 @@ app.post("/tasks", (req, res) => {
     //0 = backlog | 1 = ready to do | 2 = in progress | 3 = done
     let colIndex = req.body.colIndex;
     (async () => {
-        let result = await query("INSERT INTO `task_manager`.`tasks` (`task`, `type`) VALUES ('', '" + colIndex + "');")
-        if (result)
-            res.send("success");
-        else
+        let result = await query("INSERT INTO tasks (task, type) VALUES (''," + colIndex + ")");
+        if (result) {
+            res.send("" + result.insertId);
+            console.log("new task id: " + result.insertId);
+        } else {
             res.send("error");
+        }
+    })();
+});
+
+app.delete("/tasks", (req, res) => {
+    req.body.dbEntry = req.sanitize(req.body.dbEntry);
+    let dbEntry = parseInt(req.body.dbEntry);
+    (async () => {
+        let result = await query("DELETE from  tasks where id = " + dbEntry + " limit 1");
+        if (result) {
+            res.send("success");
+            console.log("deleted task id: " + dbEntry);
+        } else {
+            res.send("error");
+        }
     })();
 });
 
