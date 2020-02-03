@@ -30,12 +30,19 @@ div.header_left {
 div.project_image {
 	display: flex;
 	margin-left: 1.8em;
+	align-items: center;
+	justify-content: center;
 }
 
 div.project_image img {
 	width: 60px;
 	height: 60px;
 	border-radius: 13px;
+}
+
+span.project_image_text {
+	position: absolute;
+	font-size: 1.4em;
 }
 
 div.project_overview {
@@ -46,8 +53,36 @@ div.project_name {
 	font-size: 1.7em;
 }
 
+div.project_name:hover {
+	cursor: pointer;
+}
+
+i.header_arrow {
+	color: #bfbec3;
+	margin-left: 0.2em;
+}
+
 div.project_buttons {
+	margin-top: 0.9em;
+}
+
+span.header_panel {
 	font-size: 1.1em;
+	color: #837c7c;
+}
+
+span.header_panel.active {
+	color: #3991e1;
+	padding-bottom: 0.74em;
+	border-bottom: 1px solid #3991e1;
+}
+
+span.header_panel:last-of-type {
+	margin-left: 1.8em;
+}
+
+span.header_panel:hover {
+	cursor: pointer;
 }
 
 div.tasks {
