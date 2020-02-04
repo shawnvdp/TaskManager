@@ -11,6 +11,13 @@
                 <div class="project_name">
                     <span><%= tasks.projectName %></span><i class="fa fa-angle-down header_arrow"></i>
                 </div>
+                <div class="project_list hidden">
+                    <ul>
+                        <% tasks.projects.forEach(project => { %>
+                            <li><%= project.name %></li>
+                        <% }); %>
+                    </ul>
+                </div>
                 <div class="project_buttons">
                     <span class="header_panel active">Board</span>
                     <span class="header_panel">Calendar</span>

@@ -17,6 +17,28 @@
     });
 
 
+
+    let projectNameArea = document.querySelector("div.project_name");
+    let projectList = document.querySelector("div.project_list");
+
+    projectNameArea.addEventListener("click", event => {
+        projectList.classList.toggle("hidden");
+    });
+
+    let body = document.querySelector("body");
+
+    body.addEventListener("click", event => {
+        if (event.srcElement.parentElement == projectNameArea)
+            return;
+
+        //hide the projects dropdown if the element is visible and the body is clicked
+        if (!projectList.classList.contains("hidden")) {
+            projectList.classList.add("hidden");
+        }
+
+    });
+
+
 })();
 
 function deleteTask(el) {

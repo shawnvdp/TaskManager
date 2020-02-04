@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/tasks", (req, res) => {
-    let project_id = 2;
+    let project_id = 1;
 
     (async () => {
         let backlog = await query("select * from tasks where done = 0 and type = '0' and project_id = " + project_id);
@@ -36,6 +36,7 @@ app.get("/tasks", (req, res) => {
         let done = await query("select * from tasks where done = 1 and project_id = " + project_id);
         let projectName = await query("select name from projects where id = " + project_id);
         let projectAbbr = await query("select abbr from projects where id = " + project_id);
+        let projects = await query("select * from projects");
 
         let tasks = {
             backlog: backlog,
@@ -43,7 +44,8 @@ app.get("/tasks", (req, res) => {
             progress: progress,
             done: done,
             projectName: projectName[0].name,
-            projectAbbr: projectAbbr[0].abbr
+            projectAbbr: projectAbbr[0].abbr,
+            projects: projects
         }
 
         res.render("tasks/index", { tasks: tasks });
