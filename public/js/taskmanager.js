@@ -42,7 +42,7 @@ function newTask(el) {
     let parent = el.parentNode;
     let columns = document.querySelectorAll("div.col");
 
-    //check which task column the user clicked the '+' in
+    //check in which task column the user clicked the '+'
     let colIndex;
     columns.forEach((col, index) => {
         if (col == parent) {
@@ -50,13 +50,16 @@ function newTask(el) {
         }
     });
 
+    let currentProjectName = document.querySelector("div.project_name span").textContent;
+
     //letting server know to insert a new task entry in db for current element's colIndex(add it to right col)
     (async () => {
-        let response = await sendData("POST", "http://localhost:3000/tasks", { colIndex: colIndex });
+        let response = await sendData("POST", "http://localhost:3000/tasks", { colIndex: colIndex, currentProjectName: currentProjectName });
         if (response == "error") {
             console.log("error sending data to the server");
             return;
         }
+        //the id of the new task in the db
         let insertId = parseInt(response);
 
         //insert new task element after whichever '+' button the user clicked to display it at the top of the task list
@@ -69,7 +72,7 @@ function newTask(el) {
             let childTag = child.tagName.toLowerCase();
             //look for the child's button element
             if (childTag == "button") {
-                this.addEventListener("click", event => {
+                child.addEventListener("click", event => {
                     deleteTask(child);
                 });
             }
