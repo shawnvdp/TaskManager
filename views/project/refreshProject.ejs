@@ -1,0 +1,89 @@
+<div class="grid-container">
+    <div class="project_header">
+        <div class="header_left">
+            <div class="project_image">
+                <img src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-dark-pastel-purple-solid-color-background.jpg" alt="">
+                <span class="project_image_text"><%= tasks.projectAbbr %></span>
+            </div>
+            <div class="project_overview">
+                <div class="project_name">
+                    <span><%= tasks.projectName %></span><i class="fa fa-angle-down header_arrow"></i>
+                </div>
+                <div class="project_list hidden">
+                    <ul>
+                        <% tasks.projects.forEach(project => { %>
+                            <li><%= project.name %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <div class="project_buttons">
+                    <span class="header_panel active">Board</span>
+                    <span class="header_panel">Calendar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tasks">
+        <div class="col">
+            <div class="col_header">
+                <h2>Backlog</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
+                <div class="new_form hidden">
+                    <label for="task">task: </label>
+                    <input type="text" name="" value="" id="task">
+                </div>
+            </div>
+            <% tasks.backlog.forEach(task => { %>
+                <div class="task" data-entry=<%= task.id %>>
+                    <p><%= task.task %></p>
+                    <button type="submit">delete</button>
+                </div>
+            <% }); %>
+        </div>
+        <div class="col">
+            <div class="col_header">
+                <h2>Ready to do</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
+            </div>
+            <% tasks.ready.forEach(task => { %>
+                <div class="task" data-entry=<%= task.id %>>
+                    <p><%= task.task %></p>
+                    <button type="submit">delete</button>
+                </div>
+            <% }); %>
+        </div>
+        <div class="col">
+            <div class="col_header">
+                <h2>In progress</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
+            </div>
+            <% tasks.progress.forEach(task => { %>
+                <div class="task" data-entry=<%= task.id %>>
+                    <p><%= task.task %></p>
+                    <button type="submit">delete</button>
+                </div>
+            <% }); %>
+        </div>
+        <div class="col">
+            <div class="col_header">
+                <h2>Done</h2>
+            </div>
+            <div class="new task">
+                <p class="plus">+</p>
+            </div>
+            <% tasks.done.forEach(task => { %>
+                <div class="task" data-entry=<%= task.id %>>
+                    <p><%= task.task %></p>
+                    <button type="submit">delete</button>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    
+</div>

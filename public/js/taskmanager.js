@@ -1,5 +1,8 @@
 (function () {
+    bindEventListeners();
+})();
 
+function bindEventListeners() {
     let newButtons = document.querySelectorAll("div.new");
 
     newButtons.forEach(newButton => {
@@ -16,8 +19,6 @@
         });
     });
 
-
-
     let projectNameArea = document.querySelector("div.project_name");
     let projectList = document.querySelector("div.project_list");
 
@@ -28,6 +29,7 @@
     let body = document.querySelector("body");
 
     body.addEventListener("click", event => {
+        //stop the projectlist dropdown from instantly closing again
         if (event.srcElement.parentElement == projectNameArea)
             return;
 
@@ -38,16 +40,34 @@
 
     });
 
+    let projectLis = document.querySelectorAll("div.project_list li");
 
-})();
+    projectLis.forEach(project => {
+        project.addEventListener("click", event => {
+
+            (async () => {
+                try {
+                    let response = await getData("GET", "http://localhost:3000/project/" + project.innerText);
+                    $("body").html(response);
+                    bindEventListeners();
+                } catch (err) {
+                    console.log(err);
+                }
+            })();
+
+        });
+    });
+}
 
 function deleteTask(el) {
     let parent = el.parentNode;
     let dbEntry = parent.dataset.entry;
 
+    let currentProjectName = document.querySelector("div.project_name span").textContent;
+
     (async () => {
         try {
-            let response = await sendData("DELETE", "http://localhost:3000/tasks", { dbEntry: dbEntry });
+            let response = await sendData("DELETE", "http://localhost:3000/project/" + currentProjectName + "/" + dbEntry);
             if (response == "error") {
                 console.log("error sending data to the server");
                 return;
@@ -76,7 +96,7 @@ function newTask(el) {
 
     //letting server know to insert a new task entry in db for current element's colIndex(add it to right col)
     (async () => {
-        let response = await sendData("POST", "http://localhost:3000/tasks", { colIndex: colIndex, currentProjectName: currentProjectName });
+        let response = await sendData("POST", "http://localhost:3000/project/" + currentProjectName, { colIndex: colIndex });
         if (response == "error") {
             console.log("error sending data to the server");
             return;
@@ -100,6 +120,24 @@ function newTask(el) {
             }
         });
     })();
+}
+
+async function getData(method, url) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            method: method,
+            url: url,
+            timeout: 300,
+
+        })
+            .done(res => {
+                resolve(res);
+            })
+            .fail(err => {
+                reject(err);
+            });
+    });
+
 }
 
 async function sendData(method, url, data) {
